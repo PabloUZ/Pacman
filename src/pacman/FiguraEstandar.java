@@ -15,11 +15,32 @@ public class FiguraEstandar extends FiguraGeometrica{
 	private int x;
 	private int y;
 
-	public FiguraEstandar(int x, int y, Color colorBorde, Color colorRelleno, Rectangle area, boolean maquina) {
-		super(colorBorde, colorRelleno, area, maquina);
+	public FiguraEstandar(int x, int y, Color colorBorde, Color colorRelleno, boolean maquina) {
+		super(colorBorde, colorRelleno, maquina);
 		this.x = x;
 		this.y = y;
 	}
+	
+	 public void moverDE(int distancia){
+        this.x=this.x+distancia;
+    }
+    public void moverIZ(int distancia){
+        this.x=this.x-distancia;
+	actualizarArea();
+    }
+    public void moverAR(int distancia){
+        this.y=this.y-distancia;
+	actualizarArea();
+    }
+    public void moverAB(int distancia){
+        this.y=this.y+distancia;
+	actualizarArea();
+    }
+	
+	public void actualizarArea(){
+		this.getArea().setLocation(this.x, this.y);
+	}
+	
 
 	/**
 	 * @return the x

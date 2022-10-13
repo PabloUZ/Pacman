@@ -6,6 +6,8 @@ package control;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import javax.swing.JOptionPane;
+import pacman.Circulo;
 import pacman.Pared;
 
 /**
@@ -26,13 +28,50 @@ public class Pacman extends javax.swing.JFrame {
 		this.areaJuego.setSize(400, 400);
 		this.areaJuego.setBackground(Color.darkGray);
 		this.add(this.areaJuego);
-		Rectangle a = new Rectangle(0,0,30,400);
-		this.areaJuego.getFigurasEstaticas().add(new Pared(20,400,0,0,Color.blue,Color.blue,a,true));
-		this.areaJuego.getFigurasEstaticas().add(new Pared(20,400,380,0,Color.blue,Color.blue,a,true));
-		this.areaJuego.getFigurasEstaticas().add(new Pared(400,20,0,0,Color.blue,Color.blue,a,true));
-		this.areaJuego.getFigurasEstaticas().add(new Pared(400,20,0,380,Color.blue,Color.blue,a,true));
+		
+		// <editor-fold defaultstate="collapsed" desc="PAREDES">
+		Pared p1 = new Pared(20,400,0,0,Color.blue,Color.blue,true);
+		Pared p2 = new Pared(20,400,380,0,Color.blue,Color.blue,true);
+		Pared p3 = new Pared(400,20,0,0,Color.blue,Color.blue,true);
+		Pared p4 = new Pared(400,20,0,380,Color.blue,Color.blue,true);
+		
+		p1.setArea(new Rectangle(p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight()));
+		p2.setArea(new Rectangle(p2.getX(), p2.getY(), p2.getWidth(), p2.getHeight()));
+		p3.setArea(new Rectangle(p3.getX(), p3.getY(), p3.getWidth(), p3.getHeight()));
+		p4.setArea(new Rectangle(p4.getX(), p4.getY(), p4.getWidth(), p4.getHeight()));		
+		
+		this.areaJuego.getFigurasEstaticas().add(p1);
+		this.areaJuego.getFigurasEstaticas().add(p2);
+		this.areaJuego.getFigurasEstaticas().add(p3);
+		this.areaJuego.getFigurasEstaticas().add(p4);
+		
+		//</editor-fold>
+		
+		// <editor-fold defaultstate="collapsed" desc="JUGADOR">
+		
+		Circulo jugador = new Circulo(10, 20, 20, Color.orange, Color.orange, false);
+		
+		jugador.setArea(new Rectangle(jugador.getX(), jugador.getY(), jugador.getRadio()*2, jugador.getRadio()*2));
+		
+		this.areaJuego.getFigurasDinamicas().add(jugador);
 		
 		
+		//</editor-fold>
+		
+		
+		// <editor-fold defaultstate="collapsed" desc="FANTASMAS">
+		
+		
+		Circulo c1 = new Circulo(10, 360, 20, Color.green, Color.white, true);
+		
+		c1.setArea(new Rectangle(c1.getX(), c1.getY(), c1.getRadio()*2, c1.getRadio()*2));
+		
+		this.areaJuego.getFigurasDinamicas().add(c1);
+		
+		//</editor-fold>
+		
+		
+				
 	}
 
 	/**

@@ -20,10 +20,9 @@ public abstract class FiguraGeometrica {
 	public FiguraGeometrica() {
 	}
 
-	public FiguraGeometrica(Color colorBorde, Color colorRelleno, Rectangle area, boolean maquina) {
+	public FiguraGeometrica(Color colorBorde, Color colorRelleno, boolean maquina) {
 		this.colorBorde = colorBorde;
 		this.colorRelleno = colorRelleno;
-		this.area = area;
 		this.maquina = maquina;
 	}
 

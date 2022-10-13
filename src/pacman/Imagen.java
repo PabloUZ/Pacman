@@ -17,11 +17,11 @@ public class Imagen extends FiguraEstandar{
 	private int height;
 
 	public Imagen() {
-		super(0, 0, null, null, null, false);
+		super(0, 0, null, null, false);
 	}
 
-	public Imagen(String url, int width, int height, int x, int y, Color colorBorde, Color colorRelleno, Rectangle area, boolean maquina) {
-		super(x, y, colorBorde, colorRelleno, area, maquina);
+	public Imagen(String url, int width, int height, int x, int y, Color colorBorde, Color colorRelleno, boolean maquina) {
+		super(x, y, colorBorde, colorRelleno, maquina);
 		this.url = url;
 		this.width = width;
 		this.height = height;

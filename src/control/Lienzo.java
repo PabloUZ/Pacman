@@ -5,6 +5,7 @@
 package control;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import pacman.FiguraGeometrica;
 import pacman.*;
@@ -36,12 +37,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
             lapiz.setColor(circuloActual.getColorBorde());
         }
         lapiz.drawOval(circuloActual.getX(), circuloActual.getY(),
-                       circuloActual.getRadio(), circuloActual.getRadio());
+                       circuloActual.getRadio()*2, circuloActual.getRadio()*2);
         if (circuloActual.getColorRelleno()!=null) {
             lapiz.setColor(circuloActual.getColorRelleno());
         }
         lapiz.fillOval(circuloActual.getX(), circuloActual.getY(),
-                       circuloActual.getRadio(), circuloActual.getRadio());
+                       circuloActual.getRadio()*2, circuloActual.getRadio()*2);
     }
 	
 	/**
