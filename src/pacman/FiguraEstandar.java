@@ -15,8 +15,8 @@ public class FiguraEstandar extends FiguraGeometrica{
 	private int x;
 	private int y;
 
-	public FiguraEstandar(int x, int y, Color colorBorde, Color colorRelleno, boolean maquina) {
-		super(colorBorde, colorRelleno, maquina);
+	public FiguraEstandar(int x, int y, Color colorBorde, Color colorRelleno, int direccion, boolean maquina) {
+		super(colorBorde, colorRelleno, direccion, maquina);
 		this.x = x;
 		this.y = y;
 	}

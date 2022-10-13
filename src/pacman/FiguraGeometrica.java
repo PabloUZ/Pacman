@@ -15,14 +15,16 @@ public abstract class FiguraGeometrica {
 	private Color colorBorde;
 	private Color colorRelleno;
 	private Rectangle area;
+	private int direccion;
 	private boolean maquina;
 
 	public FiguraGeometrica() {
 	}
 
-	public FiguraGeometrica(Color colorBorde, Color colorRelleno, boolean maquina) {
+	public FiguraGeometrica(Color colorBorde, Color colorRelleno, int direccion, boolean maquina) {
 		this.colorBorde = colorBorde;
 		this.colorRelleno = colorRelleno;
+		this.direccion = direccion;
 		this.maquina = maquina;
 	}
 
@@ -80,6 +82,20 @@ public abstract class FiguraGeometrica {
 	 */
 	public void setMaquina(boolean maquina) {
 		this.maquina = maquina;
+	}
+
+	/**
+	 * @return the direccion
+	 */
+	public int getDireccion() {
+		return direccion;
+	}
+
+	/**
+	 * @param direccion the direccion to set
+	 */
+	public void setDireccion(int direccion) {
+		this.direccion = direccion;
 	}
 	
 	

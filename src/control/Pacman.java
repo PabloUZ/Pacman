@@ -30,10 +30,10 @@ public class Pacman extends javax.swing.JFrame {
 		this.add(this.areaJuego);
 		
 		// <editor-fold defaultstate="collapsed" desc="PAREDES">
-		Pared p1 = new Pared(20,400,0,0,Color.blue,Color.blue,true);
-		Pared p2 = new Pared(20,400,380,0,Color.blue,Color.blue,true);
-		Pared p3 = new Pared(400,20,0,0,Color.blue,Color.blue,true);
-		Pared p4 = new Pared(400,20,0,380,Color.blue,Color.blue,true);
+		Pared p1 = new Pared(20,400,0,0,Color.blue,Color.blue, 0,true);
+		Pared p2 = new Pared(20,400,380,0,Color.blue,Color.blue,0,true);
+		Pared p3 = new Pared(400,20,0,0,Color.blue,Color.blue,0,true);
+		Pared p4 = new Pared(400,20,0,380,Color.blue,Color.blue,0,true);
 		
 		p1.setArea(new Rectangle(p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight()));
 		p2.setArea(new Rectangle(p2.getX(), p2.getY(), p2.getWidth(), p2.getHeight()));
@@ -49,7 +49,7 @@ public class Pacman extends javax.swing.JFrame {
 		
 		// <editor-fold defaultstate="collapsed" desc="JUGADOR">
 		
-		Circulo jugador = new Circulo(10, 20, 20, Color.orange, Color.orange, false);
+		Circulo jugador = new Circulo(10, 20, 20, Color.orange, Color.orange, 0,false);
 		
 		jugador.setArea(new Rectangle(jugador.getX(), jugador.getY(), jugador.getRadio()*2, jugador.getRadio()*2));
 		
@@ -62,7 +62,7 @@ public class Pacman extends javax.swing.JFrame {
 		// <editor-fold defaultstate="collapsed" desc="FANTASMAS">
 		
 		
-		Circulo c1 = new Circulo(10, 360, 20, Color.green, Color.white, true);
+		Circulo c1 = new Circulo(10, 360, 20, Color.green, Color.white,  1,true);
 		
 		c1.setArea(new Rectangle(c1.getX(), c1.getY(), c1.getRadio()*2, c1.getRadio()*2));
 		
@@ -127,11 +127,13 @@ public class Pacman extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_stopActionPerformed
-        // TODO add your handling code here:
+		this.areaJuego.setIsPlaying(false);
     }//GEN-LAST:event_b_stopActionPerformed
 
     private void b_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_startActionPerformed
-        // TODO add your handling code here:
+		this.areaJuego.setIsPlaying(true);
+		Thread proceso1 = new Thread(this.areaJuego);
+		proceso1.start();
     }//GEN-LAST:event_b_startActionPerformed
 
 	/**

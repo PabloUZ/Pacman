@@ -7,6 +7,7 @@ package control;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import pacman.FiguraGeometrica;
 import pacman.*;
 
@@ -95,13 +96,56 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 	
 	@Override
 	public void run() {
+		while(this.isPlaying){
+			if(colisiona((FiguraEstandar) this.figurasDinamicas.get(1))){
+				System.out.println("Colisiona");
+				
+			}
+			mover();
+			repaint();
+			esperar(300);
+		}
+		JOptionPane.showMessageDialog(null,"Fin");
+	}
+	private void esperar(int milisegundos) {
+        try {
+            Thread.sleep(milisegundos);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+	public void mover(){
+		for (FiguraGeometrica actual:this.figurasDinamicas){
+			if (actual == this.figurasDinamicas.get(0)) continue;
+			if(actual instanceof FiguraEstandar && actual.getDireccion()==1){
+				((FiguraEstandar) actual).moverAB(5);
+			}
+		}
+	}
+	public void cambiarDireccion(FiguraEstandar g){
+		
+	}
+	
+	public boolean colisiona (FiguraEstandar g){
+		int direccion =g.getDireccion();
+		FiguraEstandar n = g;
+		if(direccion == 1){
+			n.getArea().setLocation(n.getX(),n.getY()-5);
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}
+		
+		return false;
 		
 	}
 
 	/**
 	 * @return the isPlaying
 	 */
-	public boolean isIsPlaying() {
+	public boolean getIsPlaying() {
 		return isPlaying;
 	}
 
