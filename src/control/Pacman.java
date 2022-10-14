@@ -40,9 +40,21 @@ public class Pacman extends javax.swing.JFrame {
 		Pared p3 = new Pared(400,20,0,0,Color.blue,Color.blue,0,true);
 		Pared p4 = new Pared(400,20,0,380,Color.blue,Color.blue,0,true);
 		
-		Pared p5 = new Pared(20,40,160,0,Color.blue,Color.blue, 0,true);
-		Pared p6 = new Pared(20,40,160,360,Color.blue,Color.blue, 0,true);
-
+		Pared p5 = new Pared(20,60,40,40,Color.blue,Color.blue, 0,true);
+		Pared p6 = new Pared(20,60,340,40,Color.blue,Color.blue, 0,true);
+		Pared p7 = new Pared(20,60,40,300,Color.blue,Color.blue, 0,true);
+		Pared p8 = new Pared(20,60,340,300,Color.blue,Color.blue, 0,true);
+		Pared p9 = new Pared(60,20,40,340,Color.blue,Color.blue, 0,true);
+		Pared p10 = new Pared(60,20,300,340,Color.blue,Color.blue, 0,true);
+		Pared p11 = new Pared(60,20,40,40,Color.blue,Color.blue, 0,true);
+		Pared p12 = new Pared(60,20,300,40,Color.blue,Color.blue, 0,true);
+		
+		Pared p13 = new Pared(200,20,100,100,Color.blue,Color.blue, 0,true);
+		Pared p14 = new Pared(200,20,100,280,Color.blue,Color.blue, 0,true);
+		Pared p15 = new Pared(20,200,100,100,Color.blue,Color.blue, 0,true);
+		Pared p16 = new Pared(20,200,280,100,Color.blue,Color.blue, 0,true);
+		Pared p17 = new Pared(20,40,190,0,Color.blue,Color.blue, 0,true);
+		Pared p18 = new Pared(20,40,190,360,Color.blue,Color.blue, 0,true);
 
 		
 		p1.setArea(new Rectangle(p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight()));
@@ -50,8 +62,21 @@ public class Pacman extends javax.swing.JFrame {
 		p3.setArea(new Rectangle(p3.getX(), p3.getY(), p3.getWidth(), p3.getHeight()));
 		p4.setArea(new Rectangle(p4.getX(), p4.getY(), p4.getWidth(), p4.getHeight()));
 		p5.setArea(new Rectangle(p5.getX(), p5.getY(), p5.getWidth(), p5.getHeight()));		
-		p6.setArea(new Rectangle(p6.getX(), p6.getY(), p6.getWidth(), p6.getHeight()));		
-		
+		p6.setArea(new Rectangle(p6.getX(), p6.getY(), p6.getWidth(), p6.getHeight()));
+		p7.setArea(new Rectangle(p7.getX(), p7.getY(), p7.getWidth(), p7.getHeight()));		
+		p8.setArea(new Rectangle(p8.getX(), p8.getY(), p8.getWidth(), p8.getHeight()));
+		p9.setArea(new Rectangle(p9.getX(), p9.getY(), p9.getWidth(), p9.getHeight()));		
+		p10.setArea(new Rectangle(p10.getX(), p10.getY(), p10.getWidth(), p10.getHeight()));	
+		p11.setArea(new Rectangle(p11.getX(), p11.getY(), p11.getWidth(), p11.getHeight()));
+		p12.setArea(new Rectangle(p12.getX(), p12.getY(), p12.getWidth(), p12.getHeight()));
+		p13.setArea(new Rectangle(p13.getX(), p13.getY(), p13.getWidth(), p13.getHeight()));			
+		p14.setArea(new Rectangle(p14.getX(), p14.getY(), p14.getWidth(), p14.getHeight()));			
+		p15.setArea(new Rectangle(p15.getX(), p15.getY(), p15.getWidth(), p15.getHeight()));			
+		p16.setArea(new Rectangle(p16.getX(), p16.getY(), p16.getWidth(), p16.getHeight()));
+		p17.setArea(new Rectangle(p17.getX(), p17.getY(), p17.getWidth(), p17.getHeight()));			
+		p18.setArea(new Rectangle(p18.getX(), p18.getY(), p18.getWidth(), p18.getHeight()));			
+
+
 		
 		this.areaJuego.getFigurasEstaticas().add(p1);
 		this.areaJuego.getFigurasEstaticas().add(p2);
@@ -59,6 +84,19 @@ public class Pacman extends javax.swing.JFrame {
 		this.areaJuego.getFigurasEstaticas().add(p4);
 		this.areaJuego.getFigurasEstaticas().add(p5);
 		this.areaJuego.getFigurasEstaticas().add(p6);
+		this.areaJuego.getFigurasEstaticas().add(p7);
+		this.areaJuego.getFigurasEstaticas().add(p8);
+		this.areaJuego.getFigurasEstaticas().add(p9);
+		this.areaJuego.getFigurasEstaticas().add(p10);
+		this.areaJuego.getFigurasEstaticas().add(p11);
+		this.areaJuego.getFigurasEstaticas().add(p12);
+		this.areaJuego.getFigurasEstaticas().add(p13);
+		this.areaJuego.getFigurasEstaticas().add(p14);
+		this.areaJuego.getFigurasEstaticas().add(p15);
+		this.areaJuego.getFigurasEstaticas().add(p16);
+		this.areaJuego.getFigurasEstaticas().add(p17);
+		this.areaJuego.getFigurasEstaticas().add(p18);
+
 		
 		//</editor-fold>
 		
@@ -153,13 +191,17 @@ public class Pacman extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_stopActionPerformed
-		this.areaJuego.setIsPlaying(false);
+		if(this.areaJuego.getIsPlaying()){
+			this.areaJuego.setIsPlaying(false);
+		}
     }//GEN-LAST:event_b_stopActionPerformed
 
     private void b_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_startActionPerformed
-		this.areaJuego.setIsPlaying(true);
-		Thread proceso1 = new Thread(this.areaJuego);
-		proceso1.start();
+		if(!this.areaJuego.getIsPlaying()){
+			this.areaJuego.setIsPlaying(true);
+			Thread proceso1 = new Thread(this.areaJuego);
+			proceso1.start();
+		}
 		this.b_start.setFocusable(false);
 		this.b_stop.setFocusable(false);
 		this.areaJuego.setFocusable(true);
