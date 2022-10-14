@@ -16,11 +16,11 @@ public class Pared extends FiguraEstandar{
 	private int height;
 
 	public Pared() {
-		super(0, 0, null, null, null, false);
+		super(0, 0, null, null, 0, false);
 	}
 
-	public Pared(int width, int height, int x, int y, Color colorBorde, Color colorRelleno, Rectangle area, boolean maquina) {
-		super(x, y, colorBorde, colorRelleno, area, maquina);
+	public Pared(int width, int height, int x, int y, Color colorBorde, Color colorRelleno, int direccion, boolean maquina) {
+		super(x, y, colorBorde, colorRelleno, direccion, maquina);
 		this.width = width;
 		this.height = height;
 	}

@@ -5,7 +5,9 @@
 package control;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import pacman.FiguraGeometrica;
 import pacman.*;
 
@@ -36,12 +38,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
             lapiz.setColor(circuloActual.getColorBorde());
         }
         lapiz.drawOval(circuloActual.getX(), circuloActual.getY(),
-                       circuloActual.getRadio(), circuloActual.getRadio());
+                       circuloActual.getRadio()*2, circuloActual.getRadio()*2);
         if (circuloActual.getColorRelleno()!=null) {
             lapiz.setColor(circuloActual.getColorRelleno());
         }
         lapiz.fillOval(circuloActual.getX(), circuloActual.getY(),
-                       circuloActual.getRadio(), circuloActual.getRadio());
+                       circuloActual.getRadio()*2, circuloActual.getRadio()*2);
     }
 	
 	/**
@@ -94,13 +96,111 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 	
 	@Override
 	public void run() {
+		while(this.isPlaying){
+			mover();
+			repaint();
+			int i = 1;
+			while(i<this.figurasDinamicas.size() && this.isPlaying){
+				if(((FiguraEstandar)figurasDinamicas.get(i)).getArea().intersects(((FiguraEstandar)figurasDinamicas.get(0)).getArea())){
+					this.setIsPlaying(false);
+				}
+				i++;
+			}
+			esperar(10);
+		}
+		JOptionPane.showMessageDialog(null,"Fin");
+	}
+	private void esperar(int milisegundos) {
+        try {
+            Thread.sleep(milisegundos);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+	public void mover(){
+		for (FiguraGeometrica actual:this.figurasDinamicas){
+			if (actual == this.figurasDinamicas.get(0)) continue;
+			
+			if(actual instanceof FiguraEstandar && actual.getDireccion()==1){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					continue;
+				}
+				((FiguraEstandar) actual).moverAR(1);
+			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==2){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					continue;
+				}
+				((FiguraEstandar) actual).moverDE(1);
+			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==3){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					continue;
+				}
+				((FiguraEstandar) actual).moverAB(1);
+			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==4){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					continue;
+				}
+				((FiguraEstandar) actual).moverIZ(1);
+			}
+		}
+		
+	}
+	public void cambiarDireccion(FiguraEstandar g){
+		while(colisiona(g)){
+			if(g.getDireccion()<4){
+				g.setDireccion(g.getDireccion()+1);
+			}
+			else{
+				g.setDireccion(1);
+			}
+		}
+	}
+	
+	public boolean colisiona (FiguraEstandar g){
+		int direccion =g.getDireccion();
+		FiguraEstandar n = g;
+		if(direccion == 1){
+			n.getArea().setLocation(n.getX(),n.getY()-1);
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(direccion == 2){
+			n.getArea().setLocation(n.getX()+1,n.getY());
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(direccion == 3){
+			n.getArea().setLocation(n.getX(),n.getY()+1);
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(direccion == 4){
+			n.getArea().setLocation(n.getX()-1,n.getY());
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}
+		
+		return false;
 		
 	}
 
 	/**
 	 * @return the isPlaying
 	 */
-	public boolean isIsPlaying() {
+	public boolean getIsPlaying() {
 		return isPlaying;
 	}
 
