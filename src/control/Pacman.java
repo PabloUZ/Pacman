@@ -6,8 +6,12 @@ package control;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pacman.Circulo;
+import pacman.FiguraEstandar;
+import pacman.FiguraGeometrica;
 import pacman.Pared;
 
 /**
@@ -17,6 +21,7 @@ import pacman.Pared;
 public class Pacman extends javax.swing.JFrame {
 	
 	private Lienzo areaJuego;
+	private Circulo jugador;
 	/**
 	 * Creates new form Pacman
 	 */
@@ -49,7 +54,7 @@ public class Pacman extends javax.swing.JFrame {
 		
 		// <editor-fold defaultstate="collapsed" desc="JUGADOR">
 		
-		Circulo jugador = new Circulo(10, 20, 20, Color.orange, Color.orange, 0,false);
+		jugador = new Circulo(10, 20, 20, Color.orange, Color.orange, 0,false);
 		
 		jugador.setArea(new Rectangle(jugador.getX(), jugador.getY(), jugador.getRadio()*2, jugador.getRadio()*2));
 		
@@ -71,7 +76,7 @@ public class Pacman extends javax.swing.JFrame {
 		//</editor-fold>
 		
 		
-				
+		this.setFocusable(true);
 	}
 
 	/**
@@ -87,6 +92,11 @@ public class Pacman extends javax.swing.JFrame {
         b_stop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         b_start.setText("START");
         b_start.addActionListener(new java.awt.event.ActionListener() {
@@ -134,8 +144,59 @@ public class Pacman extends javax.swing.JFrame {
 		this.areaJuego.setIsPlaying(true);
 		Thread proceso1 = new Thread(this.areaJuego);
 		proceso1.start();
+		this.b_start.setFocusable(false);
+		this.b_stop.setFocusable(false);
+		this.areaJuego.setFocusable(true);
     }//GEN-LAST:event_b_startActionPerformed
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+		if(evt.getKeyChar()=='w'&&!colisionJugador(jugador,'w')){
+			((FiguraEstandar)this.jugador).moverAR(20);
+		}else if(evt.getKeyChar()=='a'&&!colisionJugador(jugador,'a')){
+			((FiguraEstandar)this.jugador).moverIZ(20);
+		}else if(evt.getKeyChar()=='s'&&!colisionJugador(jugador,'s')){
+			((FiguraEstandar)this.jugador).moverAB(20);
+		}else if(evt.getKeyChar()=='d'&&!colisionJugador(jugador,'d')){
+			((FiguraEstandar)this.jugador).moverDE(20);
+		}
+    }//GEN-LAST:event_formKeyPressed
+
+	
+	public boolean colisionJugador(FiguraEstandar g, char letra){
+		FiguraEstandar n = g;
+		if(letra=='w'){
+			n.getArea().setLocation(n.getX(),n.getY()-1);
+			for(FiguraGeometrica i:this.areaJuego.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(letra == 'd'){
+			n.getArea().setLocation(n.getX()+1,n.getY());
+			for(FiguraGeometrica i:this.areaJuego.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(letra == 's'){
+			n.getArea().setLocation(n.getX(),n.getY()+1);
+			for(FiguraGeometrica i:this.areaJuego.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(letra == 'a'){
+			n.getArea().setLocation(n.getX()-1,n.getY());
+			for(FiguraGeometrica i:this.areaJuego.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}
+		
+		return false;
+		
+	}
 	/**
 	 * @param args the command line arguments
 	 */

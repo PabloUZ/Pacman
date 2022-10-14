@@ -97,13 +97,9 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 	@Override
 	public void run() {
 		while(this.isPlaying){
-			if(colisiona((FiguraEstandar) this.figurasDinamicas.get(1))){
-				System.out.println("Colisiona");
-				
-			}
 			mover();
 			repaint();
-			esperar(300);
+			esperar(10);
 		}
 		JOptionPane.showMessageDialog(null,"Fin");
 	}
@@ -117,20 +113,76 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 	public void mover(){
 		for (FiguraGeometrica actual:this.figurasDinamicas){
 			if (actual == this.figurasDinamicas.get(0)) continue;
+			
 			if(actual instanceof FiguraEstandar && actual.getDireccion()==1){
-				((FiguraEstandar) actual).moverAB(5);
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					System.out.println(1);
+					continue;
+				}
+				((FiguraEstandar) actual).moverAR(1);
+			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==2){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					System.out.println(2);
+					continue;
+				}
+				((FiguraEstandar) actual).moverDE(1);
+			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==3){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					System.out.println(3);
+					continue;
+				}
+				((FiguraEstandar) actual).moverAB(1);
+			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==4){
+				if(colisiona((FiguraEstandar)actual)){
+					cambiarDireccion((FiguraEstandar) actual);
+					System.out.println(4);
+					continue;
+				}
+				((FiguraEstandar) actual).moverIZ(1);
 			}
 		}
+		
 	}
 	public void cambiarDireccion(FiguraEstandar g){
-		
+		while(colisiona(g)){
+			if(g.getDireccion()<4){
+				g.setDireccion(g.getDireccion()+1);
+			}
+			else{
+				g.setDireccion(1);
+			}
+		}
 	}
 	
 	public boolean colisiona (FiguraEstandar g){
 		int direccion =g.getDireccion();
 		FiguraEstandar n = g;
 		if(direccion == 1){
-			n.getArea().setLocation(n.getX(),n.getY()-5);
+			n.getArea().setLocation(n.getX(),n.getY()-1);
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(direccion == 2){
+			n.getArea().setLocation(n.getX()+1,n.getY());
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(direccion == 3){
+			n.getArea().setLocation(n.getX(),n.getY()+1);
+			for(FiguraGeometrica i:this.getFigurasEstaticas()){
+				if(n.getArea().intersects(i.getArea())){
+					return true;
+				}
+			}
+		}else if(direccion == 4){
+			n.getArea().setLocation(n.getX()-1,n.getY());
 			for(FiguraGeometrica i:this.getFigurasEstaticas()){
 				if(n.getArea().intersects(i.getArea())){
 					return true;
