@@ -40,15 +40,25 @@ public class Pacman extends javax.swing.JFrame {
 		Pared p3 = new Pared(400,20,0,0,Color.blue,Color.blue,0,true);
 		Pared p4 = new Pared(400,20,0,380,Color.blue,Color.blue,0,true);
 		
+		Pared p5 = new Pared(20,40,160,0,Color.blue,Color.blue, 0,true);
+		Pared p6 = new Pared(20,40,160,360,Color.blue,Color.blue, 0,true);
+
+
+		
 		p1.setArea(new Rectangle(p1.getX(), p1.getY(), p1.getWidth(), p1.getHeight()));
 		p2.setArea(new Rectangle(p2.getX(), p2.getY(), p2.getWidth(), p2.getHeight()));
 		p3.setArea(new Rectangle(p3.getX(), p3.getY(), p3.getWidth(), p3.getHeight()));
-		p4.setArea(new Rectangle(p4.getX(), p4.getY(), p4.getWidth(), p4.getHeight()));		
+		p4.setArea(new Rectangle(p4.getX(), p4.getY(), p4.getWidth(), p4.getHeight()));
+		p5.setArea(new Rectangle(p5.getX(), p5.getY(), p5.getWidth(), p5.getHeight()));		
+		p6.setArea(new Rectangle(p6.getX(), p6.getY(), p6.getWidth(), p6.getHeight()));		
+		
 		
 		this.areaJuego.getFigurasEstaticas().add(p1);
 		this.areaJuego.getFigurasEstaticas().add(p2);
 		this.areaJuego.getFigurasEstaticas().add(p3);
 		this.areaJuego.getFigurasEstaticas().add(p4);
+		this.areaJuego.getFigurasEstaticas().add(p5);
+		this.areaJuego.getFigurasEstaticas().add(p6);
 		
 		//</editor-fold>
 		
@@ -68,10 +78,16 @@ public class Pacman extends javax.swing.JFrame {
 		
 		
 		Circulo c1 = new Circulo(10, 360, 20, Color.green, Color.white,  1,true);
+		Circulo c2 = new Circulo(10, 20, 360, Color.green, Color.white,  1,true);
+
 		
 		c1.setArea(new Rectangle(c1.getX(), c1.getY(), c1.getRadio()*2, c1.getRadio()*2));
+		c2.setArea(new Rectangle(c1.getX(), c1.getY(), c1.getRadio()*2, c1.getRadio()*2));
+
 		
 		this.areaJuego.getFigurasDinamicas().add(c1);
+		this.areaJuego.getFigurasDinamicas().add(c2);
+
 		
 		//</editor-fold>
 		
@@ -151,13 +167,13 @@ public class Pacman extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 		if(evt.getKeyChar()=='w'&&!colisionJugador(jugador,'w')){
-			((FiguraEstandar)this.jugador).moverAR(20);
+			((FiguraEstandar)this.jugador).moverAR(5);
 		}else if(evt.getKeyChar()=='a'&&!colisionJugador(jugador,'a')){
-			((FiguraEstandar)this.jugador).moverIZ(20);
+			((FiguraEstandar)this.jugador).moverIZ(5);
 		}else if(evt.getKeyChar()=='s'&&!colisionJugador(jugador,'s')){
-			((FiguraEstandar)this.jugador).moverAB(20);
+			((FiguraEstandar)this.jugador).moverAB(5);
 		}else if(evt.getKeyChar()=='d'&&!colisionJugador(jugador,'d')){
-			((FiguraEstandar)this.jugador).moverDE(20);
+			((FiguraEstandar)this.jugador).moverDE(5);
 		}
     }//GEN-LAST:event_formKeyPressed
 

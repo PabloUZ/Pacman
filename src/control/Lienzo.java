@@ -99,6 +99,13 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 		while(this.isPlaying){
 			mover();
 			repaint();
+			int i = 1;
+			while(i<this.figurasDinamicas.size() && this.isPlaying){
+				if(((FiguraEstandar)figurasDinamicas.get(i)).getArea().intersects(((FiguraEstandar)figurasDinamicas.get(0)).getArea())){
+					this.setIsPlaying(false);
+				}
+				i++;
+			}
 			esperar(10);
 		}
 		JOptionPane.showMessageDialog(null,"Fin");
@@ -117,28 +124,24 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 			if(actual instanceof FiguraEstandar && actual.getDireccion()==1){
 				if(colisiona((FiguraEstandar)actual)){
 					cambiarDireccion((FiguraEstandar) actual);
-					System.out.println(1);
 					continue;
 				}
 				((FiguraEstandar) actual).moverAR(1);
 			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==2){
 				if(colisiona((FiguraEstandar)actual)){
 					cambiarDireccion((FiguraEstandar) actual);
-					System.out.println(2);
 					continue;
 				}
 				((FiguraEstandar) actual).moverDE(1);
 			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==3){
 				if(colisiona((FiguraEstandar)actual)){
 					cambiarDireccion((FiguraEstandar) actual);
-					System.out.println(3);
 					continue;
 				}
 				((FiguraEstandar) actual).moverAB(1);
 			}else if(actual instanceof FiguraEstandar && actual.getDireccion()==4){
 				if(colisiona((FiguraEstandar)actual)){
 					cambiarDireccion((FiguraEstandar) actual);
-					System.out.println(4);
 					continue;
 				}
 				((FiguraEstandar) actual).moverIZ(1);
