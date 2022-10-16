@@ -208,14 +208,16 @@ public class Pacman extends javax.swing.JFrame {
     }//GEN-LAST:event_b_startActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-		if(evt.getKeyChar()=='w'&&!colisionJugador(jugador,'w')){
-			((FiguraEstandar)this.jugador).moverAR(5);
-		}else if(evt.getKeyChar()=='a'&&!colisionJugador(jugador,'a')){
-			((FiguraEstandar)this.jugador).moverIZ(5);
-		}else if(evt.getKeyChar()=='s'&&!colisionJugador(jugador,'s')){
-			((FiguraEstandar)this.jugador).moverAB(5);
-		}else if(evt.getKeyChar()=='d'&&!colisionJugador(jugador,'d')){
-			((FiguraEstandar)this.jugador).moverDE(5);
+		if (this.areaJuego.getIsPlaying()){
+			if(evt.getKeyChar()=='w'&&!colisionJugador(jugador,'w')){
+				((FiguraEstandar)this.jugador).moverAR(5);
+			}else if(evt.getKeyChar()=='a'&&!colisionJugador(jugador,'a')){
+				((FiguraEstandar)this.jugador).moverIZ(5);
+			}else if(evt.getKeyChar()=='s'&&!colisionJugador(jugador,'s')){
+				((FiguraEstandar)this.jugador).moverAB(5);
+			}else if(evt.getKeyChar()=='d'&&!colisionJugador(jugador,'d')){
+				((FiguraEstandar)this.jugador).moverDE(5);
+			}
 		}
     }//GEN-LAST:event_formKeyPressed
 
