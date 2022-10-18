@@ -23,7 +23,7 @@ public class Pacman extends javax.swing.JFrame {
 	private Lienzo areaJuego;
 	private Circulo jugador;
 	/**
-	 * Creates new form Pacman
+	 * Creates new form for the game Pacman
 	 */
 	public Pacman() {
 		initComponents();
@@ -283,12 +283,18 @@ public class Pacman extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Pause the game
+	 */
     private void b_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_stopActionPerformed
 		if(this.areaJuego.getIsPlaying()){
 			this.areaJuego.setIsPlaying(false);
 		}
     }//GEN-LAST:event_b_stopActionPerformed
-
+	
+	/**
+	 * Starts / Resume the game
+	 */
     private void b_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_startActionPerformed
 		if(!this.areaJuego.getIsPlaying()){
 			this.areaJuego.setIsPlaying(true);
@@ -300,6 +306,9 @@ public class Pacman extends javax.swing.JFrame {
 		this.areaJuego.setFocusable(true);
     }//GEN-LAST:event_b_startActionPerformed
 
+	/**
+	 * Detects keyboard pressed
+	 */
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 		if (this.areaJuego.getIsPlaying()){
 			if(evt.getKeyChar()=='w'&&!colisionJugador(jugador,'w')){
@@ -314,7 +323,11 @@ public class Pacman extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_formKeyPressed
 
-	
+	/**
+	 * Detects when a player try to pass over a wall
+	 * @param g Player (Moving figure)
+	 * @param letra Character catched from keyboard that indicates the direction player should move
+	 */
 	public boolean colisionJugador(FiguraEstandar g, char letra){
 		FiguraEstandar n = g;
 		if(letra=='w'){
