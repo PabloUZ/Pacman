@@ -20,6 +20,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 	private ArrayList<FiguraGeometrica> figurasEstaticas;
 	private ArrayList<FiguraGeometrica> figurasDinamicas;
 
+	
+	/**
+	 * Draw the wall
+	 * @param lapiz 
+	 * @param paredActual wall object to draw
+	 */
 	public void dibujarPared(Graphics lapiz,Pared paredActual){
         if (paredActual.getColorBorde()!=null) {
             lapiz.setColor(paredActual.getColorBorde());
@@ -33,6 +39,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
                        paredActual.getWidth(), paredActual.getHeight());
     }
     
+	
+	/**
+	 * Draw the Pacman and ghosts
+	 * @param lapiz from class Graphics
+	 * @param circuloActual Circle object to draw
+	 */
     public void dibujarCirculo(Graphics lapiz,Circulo circuloActual){
         if (circuloActual.getColorBorde()!=null) {
             lapiz.setColor(circuloActual.getColorBorde());
@@ -110,6 +122,11 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 		}
 		JOptionPane.showMessageDialog(null,"Fin");
 	}
+	
+	/**
+	 * Sleeps the thread process x milliseconds
+	 * @param milisegundos Time to sleep
+	 */
 	private void esperar(int milisegundos) {
         try {
             Thread.sleep(milisegundos);
@@ -117,10 +134,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
             Thread.currentThread().interrupt();
         }
     }
+	/**
+	 * Moves the ghosts with constant speed
+	 */
 	public void mover(){
 		for (FiguraGeometrica actual:this.figurasDinamicas){
 			if (actual == this.figurasDinamicas.get(0)) continue;
-			
 			if(actual instanceof FiguraEstandar && actual.getDireccion()==1){
 				if(colisiona((FiguraEstandar)actual)){
 					cambiarDireccion((FiguraEstandar) actual);
@@ -147,8 +166,12 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 				((FiguraEstandar) actual).moverIZ(1);
 			}
 		}
-		
 	}
+	
+	/**
+	 * Changes the direction of the ghost
+	 * @param g ghost to change direction
+	 */
 	public void cambiarDireccion(FiguraEstandar g){
 		while(colisiona(g)){
 			if(g.getDireccion()<4){
@@ -160,6 +183,10 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 		}
 	}
 	
+	/**
+	 * Evaluate ghost collition with a wall
+	 * @param g ghost to evaluate
+	 */
 	public boolean colisiona (FiguraEstandar g){
 		int direccion =g.getDireccion();
 		FiguraEstandar n = g;
