@@ -14,10 +14,23 @@ import java.awt.Rectangle;
 public class Circulo extends FiguraEstandar{
 	private int radio;
 
+	/**
+	 * Constructor for lass Circulo
+	 */
 	public Circulo() {
 		super(0, 0, null, null, 0, false);
 	}
 
+	/**
+	 * Constructor for lass Circulo
+	 * @param radio
+	 * @param x coord
+	 * @param y coord
+	 * @param colorBorde
+	 * @param colorRelleno
+	 * @param direccion represents the direction the object is facing (1 N; 2 E; 3 S; 4 W)
+	 * @param maquina true if not controlled by human
+	 */
 	public Circulo(int radio, int x, int y, Color colorBorde, Color colorRelleno, int direccion, boolean maquina) {
 		super(x, y, colorBorde, colorRelleno, direccion, maquina);
 		this.radio = radio;
