@@ -15,7 +15,7 @@ public class Circulo extends FiguraEstandar{
 	private int radio;
 
 	/**
-	 * Constructor for lass Circulo
+	 * Constructor for class Circulo
 	 */
 	public Circulo() {
 		super(0, 0, null, null, 0, false);
