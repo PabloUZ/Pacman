@@ -17,10 +17,20 @@ public abstract class FiguraGeometrica {
 	private Rectangle area;
 	private int direccion;
 	private boolean maquina;
-
+	
+	/**
+	 * Constructor for class FiguraGeometrica
+	 */
 	public FiguraGeometrica() {
 	}
-
+	
+	/**
+	 * Constructor for class FiguraGeometrica
+	 * @param colorBorde
+	 * @param colorRelleno
+	 * @param direccion represents the direction the object is facing (1 N; 2 E; 3 S; 4 W)
+	 * @param maquina true if not controlled by human
+	 */
 	public FiguraGeometrica(Color colorBorde, Color colorRelleno, int direccion, boolean maquina) {
 		this.colorBorde = colorBorde;
 		this.colorRelleno = colorRelleno;
