@@ -167,22 +167,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable{
 			}
 		}
 	}
-	
+		
 	/**
 	 * Changes the direction of the ghost
 	 * @param g ghost to change direction
 	 */
 	public void cambiarDireccion(FiguraEstandar g){
 		while(colisiona(g)){
-			if(g.getDireccion()<4){
-				g.setDireccion(g.getDireccion()+1);
-			}
-			else{
-				g.setDireccion(1);
-			}
+			g.setDireccion(getRandomInt(5,1));
 		}
 	}
-	
+	public static int getRandomInt(int maximum, int minimum){
+		return ((int) (Math.random()*(maximum - minimum))) + minimum;
+	}
 	/**
 	 * Evaluate ghost collition with a wall
 	 * @param g ghost to evaluate
