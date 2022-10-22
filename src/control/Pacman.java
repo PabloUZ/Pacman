@@ -210,14 +210,18 @@ public class Pacman extends javax.swing.JFrame {
 		
 		Circulo c1 = new Circulo(10, 360, 20, Color.green, Color.white,  1,true);
 		Circulo c2 = new Circulo(10, 20, 360, Color.green, Color.white,  1,true);
+		Circulo c3 = new Circulo(10, 360, 360, Color.green, Color.white,  1,true);
 
 		
 		c1.setArea(new Rectangle(c1.getX(), c1.getY(), c1.getRadio()*2, c1.getRadio()*2));
-		c2.setArea(new Rectangle(c1.getX(), c1.getY(), c1.getRadio()*2, c1.getRadio()*2));
+		c2.setArea(new Rectangle(c2.getX(), c2.getY(), c2.getRadio()*2, c2.getRadio()*2));
+		c3.setArea(new Rectangle(c3.getX(), c3.getY(), c3.getRadio()*2, c3.getRadio()*2));
+
 
 		
 		this.areaJuego.getFigurasDinamicas().add(c1);
 		this.areaJuego.getFigurasDinamicas().add(c2);
+		this.areaJuego.getFigurasDinamicas().add(c3);
 
 		
 		//</editor-fold>
