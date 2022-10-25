@@ -241,6 +241,7 @@ public class Pacman extends javax.swing.JFrame {
 
         b_start = new javax.swing.JButton();
         b_stop = new javax.swing.JButton();
+        b_restart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -263,15 +264,23 @@ public class Pacman extends javax.swing.JFrame {
             }
         });
 
+        b_restart.setText("RESTART");
+        b_restart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_restartActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(521, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(b_start, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_stop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(505, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(b_restart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(b_stop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(b_start, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -281,7 +290,9 @@ public class Pacman extends javax.swing.JFrame {
                 .addComponent(b_start)
                 .addGap(47, 47, 47)
                 .addComponent(b_stop)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(b_restart)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         pack();
@@ -307,6 +318,7 @@ public class Pacman extends javax.swing.JFrame {
 		}
 		this.b_start.setFocusable(false);
 		this.b_stop.setFocusable(false);
+		this.b_restart.setFocusable(false);
 		this.areaJuego.setFocusable(true);
     }//GEN-LAST:event_b_startActionPerformed
 
@@ -326,6 +338,23 @@ public class Pacman extends javax.swing.JFrame {
 			}
 		}
     }//GEN-LAST:event_formKeyPressed
+
+    private void b_restartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_restartActionPerformed
+	if(!this.areaJuego.getIsPlaying()){
+		this.jugador.setX(20);
+		this.jugador.setY(20);
+		
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(1)).setX(360);
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(1)).setY(20);
+		
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(2)).setX(20);
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(2)).setY(360);
+		
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(3)).setX(360);
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(3)).setY(360);
+		repaint();
+	}
+    }//GEN-LAST:event_b_restartActionPerformed
 
 	/**
 	 * Detects when a player try to pass over a wall
@@ -403,6 +432,7 @@ public class Pacman extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_restart;
     private javax.swing.JButton b_start;
     private javax.swing.JButton b_stop;
     // End of variables declaration//GEN-END:variables
