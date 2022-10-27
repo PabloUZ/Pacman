@@ -343,15 +343,21 @@ public class Pacman extends javax.swing.JFrame {
 	if(!this.areaJuego.getIsPlaying()){
 		this.jugador.setX(20);
 		this.jugador.setY(20);
+		((FiguraEstandar)this.jugador).actualizarArea();
 		
 		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(1)).setX(360);
 		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(1)).setY(20);
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(1)).actualizarArea();
+
 		
 		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(2)).setX(20);
 		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(2)).setY(360);
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(2)).actualizarArea();
 		
 		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(3)).setX(360);
 		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(3)).setY(360);
+		((FiguraEstandar)this.areaJuego.getFigurasDinamicas().get(3)).actualizarArea();
+
 		repaint();
 	}
     }//GEN-LAST:event_b_restartActionPerformed
